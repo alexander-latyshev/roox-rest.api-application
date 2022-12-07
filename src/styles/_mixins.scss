@@ -1,0 +1,63 @@
+@mixin button($w) {
+  width: $w;
+  height: 24px;
+  background-color: $theme-color;
+  color: $button-color;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin flex-center($d: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @if ($d == column) {
+    flex-direction: column;
+  }
+}
+
+@mixin scrollbar($scrollbar-width, $thumb-color, $track-color) {
+  &::-webkit-scrollbar {
+    width: #{$scrollbar-width} + px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+  }
+
+  & {
+    @if ($scrollbar-width == 0) {
+      scrollbar-width: none;
+    } @else if ($scrollbar-width < 19) {
+      scrollbar-width: thin;
+    } @else {
+      scrollbar-width: auto;
+    }
+    scrollbar-color: $thumb-color $track-color;
+  }
+}
