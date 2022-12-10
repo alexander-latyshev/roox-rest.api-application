@@ -1,0 +1,5 @@
+@import "../../styles.scss";
+
+.sort-btn {
+  @include button($theme-color);
+}

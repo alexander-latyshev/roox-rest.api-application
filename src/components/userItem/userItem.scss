@@ -1,0 +1,31 @@
+@import "../../styles.scss";
+
+$p: 10px;
+
+.user-item {
+  width: calc(420px - ($p * 2));
+  height: calc(73px - ($p * 2));
+  margin-bottom: 10px;
+  background-color: $background-grey;
+  border-radius: 8px;
+  border: 1px solid $border-color;
+  padding: $p;
+  @extend %text-style;
+  @include flex-center(column);
+  align-items: start;
+  p {
+    color: $description-color;
+    width: 100%;
+    &:last-child {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  span {
+    color: $text-color;
+  }
+  .user-item__link {
+    margin-left: auto;
+    color: $theme-color;
+  }
+}

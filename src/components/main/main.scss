@@ -1,0 +1,19 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/templates.scss";
+
+.main {
+  @include flex-center(row);
+  align-items: flex-start;
+  @extend %base-size;
+  section {
+    min-width: 600px;
+    min-height: 100%;
+  }
+  aside {
+    min-width: 200px;
+    min-height: 100%;
+  }
+}
+// .main * {
+//   border: 1px solid red;
+// }
