@@ -1,0 +1,14 @@
+@import "../styles.scss";
+
+.user-sort {
+  padding-top: 30px;
+}
+.user-list {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 600px;
+  min-height: 100%;
+}

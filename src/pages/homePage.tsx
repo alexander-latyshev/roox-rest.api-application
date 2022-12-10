@@ -5,6 +5,7 @@ import UserItem from "../components/userItem/userItem";
 import { IUser } from "../models/models";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getUsersList } from "../redux/reducer";
+import "./homePage.scss";
 
 type Props = {};
 
