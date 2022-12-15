@@ -14,10 +14,12 @@ interface IAction {
 
 export interface IState {
   users: IUser[] | null;
+  currentUser: IUser | null;
 }
 
 const initialState: IState = {
   users: null,
+  currentUser: null,
 };
 
 export const getUsersList = createAsyncThunk<IUser[]>(
@@ -30,6 +32,7 @@ export const getUsersList = createAsyncThunk<IUser[]>(
     });
 
     const result = await res.json();
+    localStorage.setItem("users", JSON.stringify(result));
     return result;
   }
 );

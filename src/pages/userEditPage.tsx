@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
+import ValidationForm from "../components/validation/validationForm/validationForm";
+import { IUser } from "../models/models";
+import { useAppSelector } from "../redux/hooks";
+import "./userEditPage.scss";
 
-type Props = {}
+type Props = {};
 
 const UserEditPage = (props: Props) => {
-  return (
-    <div>UserEditPage</div>
-  )
-}
+  const users: IUser[] = useAppSelector((state) => state.store.users);
+  const locationName: string = window.location.pathname.split("/")[1];
+  const currentUser: IUser = users?.find((item) => {
+    return item.name.split(" ").join("") === locationName;
+  });
 
-export default UserEditPage
+  return (
+    <section className="user-page">
+      <h1>User Profile</h1> <button>Redact</button>
+      <ValidationForm currentUser={currentUser} />
+    </section>
+  );
+};
+
+export default UserEditPage;

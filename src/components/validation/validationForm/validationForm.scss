@@ -1,0 +1,19 @@
+@import "../../../styles.scss";
+
+.user-info {
+  width: 438px;
+  min-height: 100%;
+  .user-form {
+    padding: $px-user-info $py-user-info;
+    width: 438px;
+    min-height: 100%;
+    box-sizing: border-box;
+    border: 1px solid $background-grey;
+    border-radius: 8px;
+  }
+  .user-info__send-btn {
+    @include button($green-color);
+    margin-left: auto;
+    margin-top: 10px;
+  }
+}

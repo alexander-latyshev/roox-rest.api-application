@@ -1,0 +1,20 @@
+@import "../../../styles.scss";
+
+.validation-name {
+  font: $font-roboto;
+  font-size: $fz-base;
+  margin-top: 15px;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+.validation-input {
+  @include input(validation);
+}
+.comment-input {
+  @include input(comment);
+}
+.validation-error {
+  color: red;
+  position: absolute;
+}

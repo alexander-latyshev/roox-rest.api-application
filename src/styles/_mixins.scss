@@ -15,6 +15,25 @@
   }
 }
 
+@mixin input($input-type: validation) {
+  $px: 10px;
+  $py: 5px;
+  border-radius: 5px;
+  border: 1px solid $border-color;
+  padding: 5px 10px;
+  & {
+    @if ($input-type == validation) {
+      // min-width: calc(211px - ($px * 2));
+      // min-height: calc(23px - ($py * 2));
+      width: 211px;
+      height: 23px;
+    } @else if ($input-type == comment) {
+      width: 420px;
+      height: 55px;
+    }
+  }
+}
+
 @mixin placeholder {
   &.placeholder {
     @content;
