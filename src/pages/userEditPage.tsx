@@ -15,13 +15,13 @@ const UserEditPage = () => {
 
   useEffect(() => {
     dispatch(getUser(currentUser));
-    // localStorage.setItem("user", JSON.stringify(currentUser));
-  }, []);
+  }, [currentUser]);
 
   return (
     <section className="user-page">
-      <h1>User Profile</h1> <button>Redact</button>
-      <ValidationForm currentUser={currentUser} />
+      <h1>User Profile</h1>
+      <button>Redact</button>
+      <ValidationForm />
     </section>
   );
 };

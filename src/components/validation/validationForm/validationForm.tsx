@@ -5,11 +5,7 @@ import { useAppSelector } from "../../../redux/hooks";
 import ValidationInput from "../validationInput/validationInput";
 import "./validationForm.scss";
 
-type Props = {
-  currentUser: IUser;
-};
-
-const ValidationForm = (props: Props) => {
+const ValidationForm = () => {
   const currentUser: IUser = useAppSelector((state) => state.store.currentUser);
 
   const {

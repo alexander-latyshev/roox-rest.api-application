@@ -31,7 +31,6 @@ export const getUsersList = createAsyncThunk<IUser[]>(
     });
 
     const result = await res.json();
-    localStorage.setItem("users", JSON.stringify(result));
     return result;
   }
 );
@@ -52,8 +51,6 @@ export const usersList = createSlice({
       return state;
     },
     getUser: (state, action: IAction) => {
-      localStorage.setItem("user", JSON.stringify(action.payload));
-
       state.currentUser = action.payload;
     },
   },
