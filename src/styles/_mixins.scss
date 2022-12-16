@@ -13,6 +13,9 @@
   &:hover {
     cursor: pointer;
   }
+  &:active {
+    opacity: 0.9;
+  }
 }
 
 @mixin input($input-type: validation) {
@@ -23,8 +26,6 @@
   padding: 5px 10px;
   & {
     @if ($input-type == validation) {
-      // min-width: calc(211px - ($px * 2));
-      // min-height: calc(23px - ($py * 2));
       width: 211px;
       height: 23px;
     } @else if ($input-type == comment) {

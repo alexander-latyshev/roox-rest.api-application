@@ -3,6 +3,7 @@
 .user-info {
   width: 438px;
   min-height: 100%;
+  grid-column: span 2;
   .user-form {
     padding: $px-user-info $py-user-info;
     width: 438px;

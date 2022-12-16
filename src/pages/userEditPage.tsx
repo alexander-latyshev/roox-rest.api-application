@@ -9,7 +9,7 @@ const UserEditPage = () => {
   const dispatch = useAppDispatch();
   const users: IUser[] = useAppSelector((state) => state.store.users);
   const locationName: string = window.location.pathname.split("/")[1];
-  const currentUser: any = users?.find((u: { name: any }) => {
+  const currentUser: any = users?.find((u) => {
     return u.name.split(" ").join("") === locationName;
   });
 
