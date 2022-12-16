@@ -4,16 +4,15 @@ import { IValidationError } from "../../../models/models";
 import "./validationInput.scss";
 
 type Props = {
-  name: string;
-  placeholder: string;
-  type: string;
+  name: any;
+  placeholder: any;
+  type: any;
   register: any;
   errors: IValidationError;
 };
 
-const ValidationInput = (props: Props) => {
+const ValidationInput = (props: any) => {
   const errors = props.errors[props.name];
-  console.log(typeof props.register);
 
   return (
     <>

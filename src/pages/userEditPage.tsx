@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ValidationForm from "../components/validation/validationForm/validationForm";
 import { IUser } from "../models/models";
-import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getUser } from "../redux/reducer";
 import "./userEditPage.scss";
 
-type Props = {};
-
-const UserEditPage = (props: Props) => {
+const UserEditPage = () => {
+  const dispatch = useAppDispatch();
   const users: IUser[] = useAppSelector((state) => state.store.users);
   const locationName: string = window.location.pathname.split("/")[1];
-  const currentUser: IUser = users?.find((item) => {
-    return item.name.split(" ").join("") === locationName;
+  const currentUser: any = users?.find((u: { name: any }) => {
+    return u.name.split(" ").join("") === locationName;
   });
+
+  useEffect(() => {
+    dispatch(getUser(currentUser));
+    // localStorage.setItem("user", JSON.stringify(currentUser));
+  }, []);
 
   return (
     <section className="user-page">

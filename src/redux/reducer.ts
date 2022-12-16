@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../models/models";
 
-interface IAction {
+export interface IAction {
   type: string;
   payload?: any;
   meta?: {
@@ -52,6 +51,11 @@ export const usersList = createSlice({
 
       return state;
     },
+    getUser: (state, action: IAction) => {
+      localStorage.setItem("user", JSON.stringify(action.payload));
+
+      state.currentUser = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(getUsersList.fulfilled, (state, action: IAction) => {
@@ -63,6 +67,6 @@ export const usersList = createSlice({
   },
 });
 
-export const { sortUsers } = usersList.actions;
+export const { sortUsers, getUser } = usersList.actions;
 
 export default usersList.reducer;
