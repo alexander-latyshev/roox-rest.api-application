@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useState } from "react";
 import { IValidationError } from "../../../models/models";
 import "./validationInput.scss";
 
@@ -9,10 +9,12 @@ type Props = {
   type: string;
   register: any;
   errors: IValidationError;
+  isReadonly: boolean;
 };
 
 const ValidationInput = (props: Props) => {
   const errors = props.errors[props.name];
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <>
@@ -28,6 +30,9 @@ const ValidationInput = (props: Props) => {
           "validation-input": props.type === "validation",
           "comment-input": props.type === "comment",
         })}
+        onChange={(e) => setInputValue(e.target.value)}
+        readOnly={props.isReadonly}
+        value={inputValue}
       />
       {errors && <div className="validation-error">{errors.message}</div>}
     </>

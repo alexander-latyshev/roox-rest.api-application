@@ -35,6 +35,24 @@ export const getUsersList = createAsyncThunk<IUser[]>(
   }
 );
 
+export const editUser = createAsyncThunk<any>("edit", async (user: any, id) => {
+  const url = `https://jsonplaceholder.typicode.com/users/${id}`;
+  console.log(user, "user");
+
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+  const result = await res.json();
+  console.log(result);
+
+  return result;
+});
+
 export const usersList = createSlice({
   name: "store",
   initialState,
@@ -55,12 +73,16 @@ export const usersList = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(getUsersList.fulfilled, (state, action: IAction) => {
-      return {
-        ...state,
-        users: action.payload,
-      };
-    });
+    builder
+      .addCase(getUsersList.fulfilled, (state, action: IAction) => {
+        return {
+          ...state,
+          users: action.payload,
+        };
+      })
+      .addCase(editUser.fulfilled, (state) => {
+        return state;
+      });
   },
 });
 

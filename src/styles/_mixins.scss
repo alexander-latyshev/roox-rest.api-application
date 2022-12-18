@@ -11,10 +11,17 @@
   font: $font-roboto;
   margin: 5px;
   &:hover {
-    cursor: pointer;
+    @if ($c == $disabled-color) {
+      cursor: default;
+    } @else {
+      cursor: pointer;
+    }
   }
   &:active {
     opacity: 0.9;
+    @if ($c == $disabled-color) {
+      opacity: 1;
+    }
   }
 }
 

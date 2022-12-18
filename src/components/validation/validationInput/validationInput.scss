@@ -10,9 +10,11 @@
 }
 .validation-input {
   @include input(validation);
+  outline: none;
 }
 .comment-input {
   @include input(comment);
+  outline: none;
 }
 .validation-error {
   color: red;

@@ -3,9 +3,14 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { IUser, IValidationFields } from "../../../models/models";
 import { useAppSelector } from "../../../redux/hooks";
 import ValidationInput from "../validationInput/validationInput";
+import { isEmpty } from "lodash";
 import "./validationForm.scss";
 
-const ValidationForm = () => {
+type Props = {
+  isReadonly: boolean;
+};
+
+const ValidationForm = (props: Props) => {
   const currentUser: IUser = useAppSelector((state) => state.store.currentUser);
 
   const {
@@ -15,9 +20,10 @@ const ValidationForm = () => {
   } = useForm<IValidationFields>();
 
   const onSubmit: SubmitHandler<IValidationFields> = (data) => {
-    console.log(`Your name ${data.name}`);
+    if (props.isReadonly && isEmpty(errors)) {
+      console.log("Redacted user:", data);
+    }
   };
-
   return (
     <>
       <form className="user-info" onSubmit={handleSubmit(onSubmit)}>
@@ -29,6 +35,7 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
             <ValidationInput
               name={"username"}
@@ -36,6 +43,7 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
             <ValidationInput
               name={"email"}
@@ -43,6 +51,7 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
             <ValidationInput
               name={"street"}
@@ -50,6 +59,7 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
             <ValidationInput
               name={"city"}
@@ -57,6 +67,7 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
             <ValidationInput
               name={"zipcode"}
@@ -64,6 +75,7 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
             <ValidationInput
               name={"phone"}
@@ -71,6 +83,7 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
             <ValidationInput
               name={"website"}
@@ -78,11 +91,20 @@ const ValidationForm = () => {
               type={"validation"}
               register={register}
               errors={errors}
+              isReadonly={props.isReadonly}
             />
           </div>
         ) : null}
 
-        <button className="user-info__send-btn">Send</button>
+        <button
+          className={
+            props.isReadonly
+              ? "user-info__send-btn"
+              : "user-info__send-btn_disabled"
+          }
+        >
+          Send
+        </button>
       </form>
     </>
   );

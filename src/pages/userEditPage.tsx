@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ValidationForm from "../components/validation/validationForm/validationForm";
 import { IUser } from "../models/models";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -12,6 +12,7 @@ const UserEditPage = () => {
   const currentUser: any = users?.find((u) => {
     return u.name.split(" ").join("") === locationName;
   });
+  const [isReadonly, setReadonly] = useState(true);
 
   useEffect(() => {
     dispatch(getUser(currentUser));
@@ -20,8 +21,8 @@ const UserEditPage = () => {
   return (
     <section className="user-page">
       <h1>User Profile</h1>
-      <button>Redact</button>
-      <ValidationForm />
+      <button onClick={() => setReadonly(!isReadonly)}>Redact</button>
+      <ValidationForm isReadonly={isReadonly} />
     </section>
   );
 };
