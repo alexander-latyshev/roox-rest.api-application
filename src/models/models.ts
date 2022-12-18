@@ -52,6 +52,6 @@ export interface IValidationError {
   street?: IError | {};
   city?: IError | {};
   zipcode?: IError | {};
-  phone?: IError | object;
+  phone?: IError | {};
   website?: IError | {};
 }
